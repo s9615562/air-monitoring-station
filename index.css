@@ -1,0 +1,194 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.navbar-title {
+    width: 1440px;
+    height: 95px;
+    flex-shrink: 0;
+    background: #E0E8E2;
+    color: #000;
+    font-family: Inter;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+.search_bar{
+    width: 330px;
+    height: 70px;
+}
+
+#search_button{
+    background-size: cover;
+    cursor: pointer;
+}
+
+.main{
+    display:flex;
+    width:1300px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.main_location{
+    width:630px;
+    /* background-color: rgb(148, 223, 28); */
+    margin-right: 50px;
+}
+
+.main_location_county{
+    height: 200px; 
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: rgba(255, 255, 255, 0.00);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 15px;
+
+
+}
+.main_location_county_title{
+    /* background-color: rgb(149, 91, 98); */
+    margin-bottom: px;
+    display: flex;
+    height: 100px;
+}
+.main_location_county_query{
+    width: 155px;
+    height: 44px;
+    margin-left: 37px;
+    margin-top: 26px;
+    margin-right: 40px;
+    color: #000;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.main_location_county_result{
+    display: flex;
+    width: 344px;
+    height: 64px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    background: #E0E8E2;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+.main_location_district{
+    display: grid;
+    margin: auto;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr ;
+    gap: 12px;
+    /* margin-top: 20px; */
+    margin-right: 60px;
+    margin-left: 60px;
+
+}
+
+.main_location_district_content{
+    width: 160px;
+    height: 70px;
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 70px;
+    border-radius: 5px;
+    background: #D9D9D9;
+    
+}
+
+.main_map{
+    height: 540px;
+    background-color: aquamarine;
+}
+
+
+.main_info{
+    height: 820px;
+    width:620px;
+}
+
+.main_info_title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 445;
+    height: 75px;
+    font-size: 44px;
+}
+
+.main_info_score{
+    display: flex;
+}
+
+
+.main_info_score_number{
+    width: 200px;
+    height: 120px;
+    flex-shrink: 0;
+    background: #FFF96F;
+    margin-left: 56px;
+    color: #000;
+    font-family: Inter;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120px;
+    text-align: center;
+}
+
+
+.main_info_title_detail_rating{
+    color: #000;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+}
+
+
+.main_info_title_detail_time{
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.pollutant_information{
+    width: 555px;
+    
+}
+
+
+#pollutant{
+    font-size: 32px;
+}
+
+
+#pollutant_value{
+    font-size: 32px;
+}

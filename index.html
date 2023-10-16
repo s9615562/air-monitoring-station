@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="head">
+        <div class="navbar-title">
+            空氣監測站
+        </div>
+        <div class="search_bar">
+            <button id="search_button"></button>
+            <input type="text">
+        </div>
+    </div>
+    <div class="main">
+        <!-- 左邊 -->
+        <div class="main_location">
+            <!-- 框框內上層地區 -->
+            <div class="main_location_county">
+                <!-- title -->
+                <div class="main_location_county_title">
+                    <div class="main_location_county_query">
+                        監測縣市:
+                    </div>
+                    <div class="main_location_county_result">
+                        台南
+                    </div>
+                </div>
+                <!-- box -->
+                <div class="main_location_district">
+                    <div class="main_location_district_content">
+                        永康
+                    </div>
+                    <div class="main_location_district_content">
+                        善化
+                    </div>
+                    <div class="main_location_district_content">
+                        麻豆
+                    </div>
+                </div>
+            </div>
+            <!-- 框框內下層地圖 -->
+            <div class="main_map">        
+            </div>
+        </div>
+        <!-- 右邊 -->
+        <div class="main_info">
+            <div class="main_info_title">
+                <div class="main_info_title_district">
+                    監測地區:
+                </div>
+                <div class="main_info_title_result">
+                    永康
+                </div>
+            </div>
+            <div class="main_info_score">
+                <div class="main_info_score_number">
+                    86
+                </div>
+                <div class="main_info_title_detail">
+                    <div class="main_info_title_detail_rating">
+                        <div class="main_info_title_detail_rating_text">普通</div>
+                        <div class="main_info_title_detail_rating_image">圖</div>
+                    </div>
+                    <div class="main_info_title_detail_time">2023</div>              
+                </div>
+                
+            </div>
+            <div class="pollutant_information">
+                <div class="pollutant_field">
+                    <div id="pm2.5" class="pollutant"></div>
+                    <div id="pm2.5_pollutant_value" class="pollutant_value"></div>
+                    <div id="pm2.5_bar_chart" class="bar_chart"></div>
+                </div>
+                <div class="pollutant_field">
+                    <div id="pm10" class="pollutant"></div>
+                    <div id="pm10_pollutant_value" class="pollutant_value"></div>
+                    <div id="pm10_bar_chart" class="bar_chart"></div>
+                </div>
+                <div class="pollutant_field">
+                    <div id="O3" class="pollutant"></div>
+                    <div id="O3_pollutant_value" class="pollutant_value"></div>
+                    <div id="O3_bar_chart" class="bar_chart"></div>
+                </div>
+                <div class="pollutant_field">
+                    <div id="NO2" class="pollutant"></div>
+                    <div id="NO2_pollutant_value" class="pollutant_value"></div>
+                    <div id="NO2_bar_chart" class="bar_chart"></div>
+                </div>
+                <div class="pollutant_field">
+                    <div id="SO2" class="pollutant"></div>
+                    <div id="SO2_pollutant_value" class="pollutant_value"></div>
+                    <div id="SO2_bar_chart" class="bar_chart"></div>
+                </div>
+                <div class="pollutant_field">
+                    <div id="CO" class="pollutant"></div>
+                    <div id="CO_pollutant_value" class="pollutant_value"></div>
+                    <div id="CO_bar_chart" class="bar_chart"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>    
+</body>
+</html>
+<style>
+
+</style>
