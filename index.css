@@ -113,15 +113,18 @@
 
 
 .main_location_district{
-    display: grid;
+    /*display: grid;
     margin: auto;
 
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr ;
     gap: 12px;
     /* margin-top: 20px; */
-    margin-right: 60px;
-    margin-left: 60px;
+    /*margin-right: 60px;
+    margin-left: 60px;*/
+    display: flex;
+    justify-content: center;
+
 
 }
 
@@ -138,6 +141,7 @@
     line-height: 70px;
     border-radius: 5px;
     background: #D9D9D9;
+    gap: 12px;
     
 }
 
@@ -166,6 +170,7 @@
 
 .main_info_score{
     display: flex;
+    justify-content: center;
 }
 
 
@@ -174,7 +179,7 @@
     height: 120px;
     flex-shrink: 0;
     background: #FFF96F;
-    margin-left: 56px;
+   /* margin-left: 56px;*/
     color: #000;
     font-family: Inter;
     font-size: 96px;
@@ -271,7 +276,7 @@
     
     .main{
         display:flex;
-        width:1300px;
+        width:850px;
         margin: auto;
         margin-top: 50px;
     }
@@ -332,7 +337,7 @@
     
     
     .main_location_district{
-        display: grid;
+        display: flex;
         margin: auto;
     
         grid-template-columns: 1fr 1fr 1fr;
@@ -357,7 +362,7 @@
         line-height: 70px;
         border-radius: 5px;
         background: #D9D9D9;
-        
+        gap: 12px;
     }
     
     .main_map{
@@ -371,12 +376,15 @@
         width:425px;
         border: 1px black solid;
         border-radius: 5px;
+        margin-left: 30px;
     }
     
     .main_info_title{
-        display: flex;
+        /*display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center;*/
+        display: flex;
+        justify-content: flex-start;
         width: 445;
         height: 75px;
         font-size: 44px;
@@ -385,6 +393,8 @@
     
     .main_info_score{
         display: flex;
+        flex-direction: column;
+        
     }
     
     
@@ -393,7 +403,7 @@
         height: 120px;
         flex-shrink: 0;
         background: #FFF96F;
-        margin-left: 56px;
+        /*margin-left: 56px;*/
         color: #000;
         font-family: Inter;
         font-size: 96px;
