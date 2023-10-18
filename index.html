@@ -55,17 +55,16 @@
 					<div id="searchArea" class="main_info_title_result"></div>
 				</div>
 				<div class="main_info_score">
-					<div class="main_info_score_number">86</div>
+					<div class="main_info_score_number"></div>
 					<div class="main_info_title_detail">
 						<div class="main_info_title_detail_rating">
-							<div class="main_info_title_detail_rating_text">
-								普通
+							<div class="main_info_title_detail_rating_text">		
 							</div>
 							<div class="main_info_title_detail_rating_image">
-								圖
+								<!-- <img src="" alt=""> -->
 							</div>
 						</div>
-						<div class="main_info_title_detail_time">2023</div>
+						<div class="main_info_title_detail_time"></div>
 					</div>
 				</div>
 				<div class="pollutant_information">
@@ -86,41 +85,43 @@
 						<div id="pm10_bar_chart" class="bar_chart"></div>
 					</div>
 					<div class="pollutant_field">
-						<div id="O3" class="pollutant"></div>
+						<div id="o3" class="pollutant"></div>
 						<div
-							id="O3_pollutant_value"
+							id="o3_pollutant_value"
 							class="pollutant_value"
 						></div>
-						<div id="O3_bar_chart" class="bar_chart"></div>
+						<div id="o3_bar_chart" class="bar_chart"></div>
 					</div>
 					<div class="pollutant_field">
-						<div id="NO2" class="pollutant"></div>
+						<div id="no2" class="pollutant"></div>
 						<div
-							id="NO2_pollutant_value"
+							id="no2_pollutant_value"
 							class="pollutant_value"
 						></div>
-						<div id="NO2_bar_chart" class="bar_chart"></div>
+						<div id="no2_bar_chart" class="bar_chart"></div>
 					</div>
 					<div class="pollutant_field">
-						<div id="SO2" class="pollutant"></div>
+						<div id="so2" class="pollutant"></div>
 						<div
-							id="SO2_pollutant_value"
+							id="so2_pollutant_value"
 							class="pollutant_value"
 						></div>
-						<div id="SO2_bar_chart" class="bar_chart"></div>
+						<div id="so2_bar_chart" class="bar_chart"></div>
 					</div>
 					<div class="pollutant_field">
-						<div id="CO" class="pollutant"></div>
+						<div id="co_8hr" class="pollutant"></div>
 						<div
-							id="CO_pollutant_value"
+							id="co_8hr_pollutant_value"
 							class="pollutant_value"
 						></div>
-						<div id="CO_bar_chart" class="bar_chart"></div>
+						<div id="co_8hr_bar_chart" class="bar_chart"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script type="module" src="./selectData.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+		<script src="bar-chart.js"></script>
 	</body>
 
 </html>
