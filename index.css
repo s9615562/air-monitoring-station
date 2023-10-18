@@ -30,37 +30,32 @@
     line-height: 95px;
   }
 
+/* 搜尋框
+-------------------- */
 .search_bar{
     width: 330px;
     height: 70px;
     display: flex;
-
+    position: relative;
 }
 
-.input{
+.search_box {
     width: 330px;
     height: 70px;
-    margin-top: 12.5px;
-    border-radius: 5px;
-    border: 0;
-    background-color:#D9D9D9;
+
+    background-color: #d9d9d9;
+    font-size: 50px;
 }
 
-#search_button{
-    background-size: cover;
-    width: 70px;
-    height: 70px;
-    cursor: pointer;
-    margin-top: 12.5px;
-    border: 0;
-    opacity: 0.1;
-    position: relative;
-    left: 65px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-
+.search_image {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 5px;
 }
 
+/* MAIN
+-------------------- */
 .main{
     display:flex;
     width:1300px;
@@ -68,12 +63,15 @@
     margin-top: 50px;
 }
 
+
 .main_location{
     width:630px;
     /* background-color: rgb(148, 223, 28); */
     margin-right: 50px;
 }
 
+/* 縣市選單
+-------------------- */
 .main_location_county{
     height: 200px; 
     border-radius: 5px;
@@ -102,41 +100,55 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-}
-.main_location_county_result{
     display: flex;
-    width: 344px;
-    height: 64px;
-    margin-top: 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 5px;
-    background: #E0E8E2;
-    color: #000;
-    text-align: center;
-    font-family: Inter;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+    white-space: nowrap;
+}
+
+/* 區域列表
+-------------------- */
+.list_bar {
+    display: flex;
+    flex-direction: row;
 }
 
 
-.main_location_district{
-    /*display: grid;
-    margin: auto;
-
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr ;
+#areaDisplay {
+    width: 528px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
     gap: 12px;
-    /* margin-top: 20px; */
-    /*margin-right: 60px;
-    margin-left: 60px;*/
+    margin: 0 10px;
+    overflow: hidden;
+}
+
+.area_button {
     display: flex;
-    justify-content: center;
+    white-space: nowrap;
+    align-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background 0.5s;
+    border-radius: 10px;
+}
 
+.area_button:hover {
+    background:#d9d9d9;
+    border-radius: 10px;
+}
 
+.direction_btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background 0.5s;
+    border-radius: 10px;
+}
+
+.direction_btn:hover {
+    background:#d9d9d9;
+    border-radius: 10px;
 }
 
 .main_location_district_content{
@@ -154,7 +166,7 @@
     background: #D9D9D9;
     margin: 6px;
     
-}
+} */
 
 .main_map{
     width: 630px;
