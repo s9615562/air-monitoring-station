@@ -41,13 +41,24 @@
     width: 330px;
     height: 70px;
     margin-top: 12.5px;
+    border-radius: 5px;
+    border: 0;
+    background-color:#D9D9D9;
 }
 
 #search_button{
     background-size: cover;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
-    /*background-image: url('magnifying-glass.png') ;*/
     margin-top: 12.5px;
+    border: 0;
+    opacity: 0.1;
+    position: relative;
+    left: 65px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+
 }
 
 .main{
@@ -141,13 +152,15 @@
     line-height: 70px;
     border-radius: 5px;
     background: #D9D9D9;
-    gap: 12px;
+    margin: 6px;
     
 }
 
 .main_map{
-    height: 540px;
+    width: 630px;
+    height: 605px;
     background-color: aquamarine;
+    border-radius: 5px;
 }
 
 
@@ -166,6 +179,7 @@
     height: 75px;
     font-size: 44px;
     margin-top: 22px;
+    margin-bottom: 35px;
 }
 
 .main_info_score{
@@ -198,6 +212,8 @@
     font-weight: 500;
     line-height: normal;
     display: flex;
+    margin-top: 22px;
+    margin-left: 20px;
 }
 
 
@@ -208,6 +224,8 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-top: 12px;
+    margin-left: 20px;
 }
 
 .pollutant_information{
@@ -225,7 +243,7 @@
     font-size: 32px;
 }
 
-@media (max-width:1300px){
+@media (max-width:850px){
    
     .head{
         display: flex;
@@ -236,7 +254,7 @@
     }
     
     .head_box{
-        width:850px;
+        width:100%;
         display: flex;
         justify-content: space-between;
     }
@@ -276,15 +294,18 @@
     
     .main{
         display:flex;
-        width:850px;
+        flex-direction: column;
+        justify-content: center;
+        width:100%;
         margin: auto;
         margin-top: 50px;
     }
     
     .main_location{
-        width:425px;
+        width:100%;
+        height: 109px;
         /* background-color: rgb(148, 223, 28); */
-        margin-right: 50px;
+        margin-right: 0px;
     }
     
     .main_location_county{
@@ -293,7 +314,7 @@
         border: 1px solid #000;
         background: rgba(255, 255, 255, 0.00);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        margin-bottom: 15px;
+        margin-bottom: 0px;
     
     
     }
@@ -366,17 +387,18 @@
     }
     
     .main_map{
-        height: 540px;
+        width: 100%;
+        height: 395px;
         background-color: aquamarine;
     }
     
     
     .main_info{
-        height: 483px;
-        width:425px;
+        height: 684px;
+        width:100%;
         border: 1px black solid;
         border-radius: 5px;
-        margin-left: 30px;
+        
     }
     
     .main_info_title{
@@ -389,12 +411,14 @@
         height: 75px;
         font-size: 44px;
         margin-top: 22px;
+        margin-left: 30px;
+        margin-bottom: 30px;
     }
     
     .main_info_score{
         display: flex;
         flex-direction: column;
-        
+        margin-left: 30px;
     }
     
     
@@ -411,6 +435,7 @@
         font-weight: 500;
         line-height: 120px;
         text-align: center;
+        margin-bottom: 15px;
     }
     
     
@@ -422,6 +447,9 @@
         font-weight: 500;
         line-height: normal;
         display: flex;
+        margin-top: 0px;
+        margin-bottom: 15px;
+        margin-left: 0px;
     }
     
     
@@ -432,6 +460,244 @@
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        margin-left: 0px;
+    }
+    
+    .pollutant_information{
+        width: 555px;
+        
+    }
+    
+    
+    #pollutant{
+        font-size: 32px;
+    }
+    
+    
+    #pollutant_value{
+        font-size: 32px;
+    }
+
+
+}
+
+
+@media (max-width:1300px){
+   
+    .head{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 95px;
+        background: #E0E8E2;
+    }
+    
+    .head_box{
+        width:850px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .navbar-title {
+        /*width: 100%;*/
+        height: 95px;
+        flex-shrink: 0;
+        background: #E0E8E2;
+        color: #000;
+        font-family: Inter;
+        font-size: 44px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 95px;
+      }
+    
+    .search_bar{
+        width: 330px;
+        height: 70px;
+        display: flex;
+    
+    }
+    
+    .input{
+        width: 330px;
+        height: 70px;
+        margin-top: 12.5px;
+    }
+    
+    #search_button{
+        background-size: cover;
+        cursor: pointer;
+        /*background-image: url('magnifying-glass.png') ;*/
+        margin-top: 12.5px;
+    }
+    
+    .main{
+        display:flex;
+        width:850px;
+        margin: auto;
+        margin-top: 50px;
+    }
+    
+    .main_location{
+        width:425px;
+        height: 200px;
+        /* background-color: rgb(148, 223, 28); */
+        margin-right: 0px;
+    }
+    
+    .main_location_county{
+        height: 200px; 
+        border-radius: 5px;
+        border: 1px solid #000;
+        background: rgba(255, 255, 255, 0.00);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        margin-bottom: 0px;
+    
+    
+    }
+    .main_location_county_title{
+        /* background-color: rgb(149, 91, 98); */
+        margin-bottom: px;
+        display: flex;
+        height: 100px;
+    }
+    .main_location_county_query{
+        width: 155px;
+        height: 44px;
+        margin-left: 37px;
+        margin-top: 26px;
+        margin-right: 40px;
+        color: #000;
+        font-family: Inter;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+    .main_location_county_result{
+        display: flex;
+        width: 160px;
+        height: 70px;
+        margin-top: 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 5px;
+        background: #E0E8E2;
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+    
+    
+    .main_location_district{
+        display: flex;
+        margin: auto;
+    
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr ;
+        gap: 12px;
+        /* margin-top: 20px; */
+        margin-right: 60px;
+        margin-left: 60px;
+    
+    }
+    
+    .main_location_district_content{
+        width: 160px;
+        height: 70px;
+        flex-shrink: 0;
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 70px;
+        border-radius: 5px;
+        background: #D9D9D9;
+        gap: 12px;
+    }
+    
+    .main_map{
+        width: 425px;
+        height: 483px;
+        background-color: aquamarine;
+    }
+    
+    
+    .main_info{
+        height: 684px;
+        width:427px;
+        border: 1px black solid;
+        border-radius: 5px;
+        
+    }
+    
+    .main_info_title{
+        /*display: flex;
+        justify-content: center;
+        align-items: center;*/
+        display: flex;
+        justify-content: flex-start;
+        width: 445;
+        height: 75px;
+        font-size: 44px;
+        margin-top: 22px;
+        margin-left: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .main_info_score{
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+    }
+    
+    
+    .main_info_score_number{
+        width: 200px;
+        height: 120px;
+        flex-shrink: 0;
+        background: #FFF96F;
+        /*margin-left: 56px;*/
+        color: #000;
+        font-family: Inter;
+        font-size: 96px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    
+    .main_info_title_detail_rating{
+        color: #000;
+        font-family: Inter;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        display: flex;
+        margin-top: 0px;
+        margin-bottom: 15px;
+        margin-left: 0px;
+    }
+    
+    
+    .main_info_title_detail_time{
+        color: #000;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin-left: 0px;
     }
     
     .pollutant_information{
