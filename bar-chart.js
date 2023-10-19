@@ -22,6 +22,7 @@ function createPollutionsSection(sitename){
 
 function renderPollutionsSection(data, sitename){
     siteRecords = retriveSiteData(data, sitename);
+    emptyPollutionSection();
     renderAqiSection(siteRecords);
     for(let i=0;i<pollutantsList.length;i++){
         let pollutantRecords = retriveEachIndex(siteRecords, pollutantsList[i]);
@@ -107,6 +108,15 @@ function renderPollutionText(pollutant, value){
     nameDiv.textContent = pollutant.toUpperCase();
     const valueDiv = document.getElementById(pollutant+'_pollutant_value');
     valueDiv.textContent = value;
+}
+
+function emptyPollutionSection(){
+    const aqiRatingEmojiDiv = document.querySelector('.main_info_title_detail_rating_image');
+    aqiRatingEmojiDiv.innerHTML = '';
+    const barChartDivs = document.querySelectorAll('.bar_chart');
+    barChartDivs.forEach(div => {
+        div.innerHTML = '';
+    })
 }
 
 function renderPollutionBarChart(pollutant, data){
