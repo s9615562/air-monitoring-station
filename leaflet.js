@@ -11,17 +11,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var popup = L.popup();
 
 function onMapClick(e) {
-    // Close the existing popup if it's open
-    if (popup.isOpen()) {
-        map.closePopup(popup);
-    }
-
     popup
         .setLatLng(e.latlng)
         .setContent(e.loc)
         .openOn(map);
     querySite.textContent = e.loc
-    console.log(e)
     map.setView([e.latlng.lat,e.latlng.lng], 10);
     createPollutionsSection(e.loc);
 }
@@ -60,7 +54,6 @@ function setMarker(lat,lng,status,loc){
     let marker = L.marker([lat, lng], { icon: status }).addTo(map).bindPopup(loc);
     marker.setZIndexOffset(1000); // Adjust the z-index as needed
     marker.on('click', function () {
-        console.log("hi")
         onMapClick({ latlng: marker.getLatLng(),loc:loc,status:status });
         map.closePopup();
     });
@@ -115,7 +108,7 @@ function getSite(site){
             siteMarker.openPopup();
 
         }else if(site == "查無區域"){
-            siteMarker.closePopup();
+            // siteMarker.closePopup();
             map.setView(defultSpot, 8);
         }else{
             // 
