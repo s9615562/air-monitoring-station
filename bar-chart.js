@@ -184,8 +184,8 @@ function renderPollutionBarChart(pollutant, data){
         .attr("height", 0)
         .transition()
         .duration(1000)
-        .attr("y", d => y(d.value))
-        .attr("height", d => height - y(d.value))
+        .attr("y", d => (!isNaN(d.value) ? y(d.value) : height))
+        .attr("height", d => (!isNaN(d.value) ? height - y(d.value) : 0))
         .attr("fill", d => colorScale(d.value));
     // 繪製間隔(垂直白長線)
     for(let i=0;i<data.length;i++){
