@@ -11,12 +11,15 @@ const colorGradientList = ["#47986A", "#ABC060", "#F4B850", "#CF543F", "#83186E"
 const verticalLinesTime = [0, 6, 12, 18];
 
 function createPollutionsSection(sitename){
+    const pollutantLoadingContainer = document.querySelector('.pollutant_info_loading_container');
+    pollutantLoadingContainer.style.display = 'flex';
     fetch('https://data.moenv.gov.tw/api//v2//aqx_p_488?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1100&format=JSON')
     .then(response => {
         return response.json();
     }).then(data => {
         const records = data.records;
-        renderPollutionsSection(records, sitename); 
+        renderPollutionsSection(records, sitename);
+        pollutantLoadingContainer.style.display = 'none';
     })
 }
 
