@@ -11,6 +11,7 @@ const colorGradientList = ["#47986A", "#ABC060", "#F4B850", "#CF543F", "#83186E"
 const verticalLinesTime = [0, 6, 12, 18];
 let records;
 
+
 function waitForData(){
     if (window.globalVar){
         //
@@ -27,6 +28,17 @@ async function createPollutionsSection(sitename){
     renderPollutionsSection(records, sitename);
     pollutantLoadingContainer.style.display = 'none';
     
+
+}
+
+function loadingAnimation(boolean){
+    const pollutantLoadingContainer = document.querySelector('.pollutant_info_loading_container');
+    if(boolean){
+        pollutantLoadingContainer.style.display = 'flex';
+    }
+    else{
+        pollutantLoadingContainer.style.display = 'none';
+    }
 }
 
 function renderPollutionsSection(data, sitename){
@@ -139,7 +151,7 @@ function renderPollutionBarChart(pollutant, data){
         .range([0, width]);
     // Declare the y (vertical position) scale.
     const y = d3.scaleLinear()
-        .domain([d3.min(data, d => d.value)-10, d3.max(data, d => d.value)])
+        .domain([d3.min(data, d => d.value)-10, d3.max(data, d => d.value)+5])
         .range([height, marginTop]);
     // Create the SVG container.
     const svg = d3.create("svg")
@@ -155,14 +167,14 @@ function renderPollutionBarChart(pollutant, data){
         const hour = parseInt(time.substring(11, 13), 10);
         if(verticalLinesTime.includes(hour)){
             svg.append("line")
-                .attr("x1", width/12*(Math.abs(i-data.length+1)+0.5))
+                .attr("x1", width/data.length*(Math.abs(i-data.length+1)+0.5))
                 .attr("y1", marginTop-5)
-                .attr("x2", width/12*(Math.abs(i-data.length+1)+0.5))
+                .attr("x2", width/data.length*(Math.abs(i-data.length+1)+0.5))
                 .attr("y2", height)
                 .attr("stroke", "gray") 
                 .attr("stroke-width", 1);
             svg.append("text")
-                .attr("x", width/12*(Math.abs(i-data.length+1)+0.5))
+                .attr("x", width/data.length*(Math.abs(i-data.length+1)+0.5))
                 .attr("y", marginTop-10)
                 .attr("text-anchor", "middle") 
                 .attr("fill", "black") 
@@ -181,15 +193,15 @@ function renderPollutionBarChart(pollutant, data){
         .attr("height", 0)
         .transition()
         .duration(1000)
-        .attr("y", d => y(d.value))
-        .attr("height", d => height - y(d.value))
+        .attr("y", d => (!isNaN(d.value) ? y(d.value) : height))
+        .attr("height", d => (!isNaN(d.value) ? height - y(d.value) : 0))
         .attr("fill", d => colorScale(d.value));
     // 繪製間隔(垂直白長線)
     for(let i=0;i<data.length;i++){
         svg.append("line")
-            .attr("x1", width/12*i)
+            .attr("x1", width/data.length*i)
             .attr("y1", marginTop)
-            .attr("x2", width/12*i)
+            .attr("x2", width/data.length*i)
             .attr("y2", height) 
             .attr("stroke", "white")
             .attr("stroke-width", 1); 
