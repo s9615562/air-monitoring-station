@@ -22,22 +22,12 @@ function waitForData(){
   }
 
 async function createPollutionsSection(sitename){
-    const pollutantLoadingContainer = document.querySelector('.pollutant_info_loading_container');
-    pollutantLoadingContainer.style.display = 'flex';
-    records = await waitForData();
-    renderPollutionsSection(records, sitename);
-    pollutantLoadingContainer.style.display = 'none';
-    
-
-}
-
-function loadingAnimation(boolean){
-    const pollutantLoadingContainer = document.querySelector('.pollutant_info_loading_container');
-    if(boolean){
-        pollutantLoadingContainer.style.display = 'flex';
+    if(sitename == '查無區域'){
+        emptyPollutionSection();
     }
     else{
-        pollutantLoadingContainer.style.display = 'none';
+    records = await waitForData();
+    renderPollutionsSection(records, sitename);
     }
 }
 
@@ -114,7 +104,7 @@ function mappingEmoji(rating){
 
 function mappingScoreColor(rating){
     const ratingToColorMap = {
-        '良好': '#B3F263',
+        '良好': '#C0F182',
         '普通': '#FFF96F',
         '對敏感族群不健康': '#FFC36A',
         '對所有族群不健康': '#FF7C6A',
@@ -126,12 +116,27 @@ function mappingScoreColor(rating){
 
 function renderPollutionText(pollutant, value){
     const nameDiv = document.getElementById(pollutant);
-    nameDiv.textContent = pollutant.toUpperCase();
+    nameDiv.textContent = pollutant.toUpperCase().split('_')[0];
     const valueDiv = document.getElementById(pollutant+'_pollutant_value');
     valueDiv.textContent = value;
 }
 
 function emptyPollutionSection(){
+    const aqiScoreDiv = document.querySelector('.main_info_score_number');
+    aqiScoreDiv.textContent = '';
+    aqiScoreDiv.style.background = 'white';
+    const aqiRatingTextDiv = document.querySelector('.main_info_title_detail_rating_text');
+    aqiRatingTextDiv.textContent = '';
+    const aqiTimeDiv = document.querySelector('.main_info_title_detail_time');
+    aqiTimeDiv.textContent = '';
+    const pollutantDivs = document.querySelectorAll('.pollutant');
+    pollutantDivs.forEach(pollutant => {
+        pollutant.textContent = '';
+    })
+    const pollutantValueDivs = document.querySelectorAll('.pollutant_value');
+    pollutantValueDivs.forEach(value => {
+        value.textContent = '';
+    })
     const aqiRatingEmojiDiv = document.querySelector('.main_info_title_detail_rating_image');
     aqiRatingEmojiDiv.innerHTML = '';
     const barChartDivs = document.querySelectorAll('.bar_chart');
