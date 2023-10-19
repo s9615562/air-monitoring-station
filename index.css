@@ -798,7 +798,7 @@
         line-height: normal;
         margin-left: 0px;
     }
-    
+
     .pollutant_information{
         width: 555px;
         
@@ -812,17 +812,17 @@
     
     #pollutant_value{
         font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
+    .pollutant_value{
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 }
 
-.pollutant_value{
-    font-size: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
