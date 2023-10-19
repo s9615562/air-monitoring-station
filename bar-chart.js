@@ -1,5 +1,5 @@
-pollutantsList = ['pm2.5', 'pm10', 'o3', 'no2', 'so2', 'co_8hr'];
-pollutantsDomainList = {
+const pollutantsList = ['pm2.5', 'pm10', 'o3', 'no2', 'so2', 'co_8hr'];
+const pollutantsDomainList = {
     'pm2.5': [0, 15.4, 35.4, 54.4, 150.4, 200.4, 250.4, 350.4],
     'pm10': [0, 50, 100, 254, 354, 389, 424, 504],
     'o3': [0, 50, 100, 164, 204, 304, 404, 504],
@@ -7,23 +7,25 @@ pollutantsDomainList = {
     'so2': [0, 20, 75, 185, 304, 454, 604, 804],
     'co_8hr': [0, 4.4, 9.4, 12.4, 15.4, 22.9, 30.4, 40.4]
 }
-colorGradientList = ["#47986A", "#ABC060", "#F4B850", "#CF543F", "#83186E", "#5F0E85", "#6B124C", "#450A17"];
+const colorGradientList = ["#47986A", "#ABC060", "#F4B850", "#CF543F", "#83186E", "#5F0E85", "#6B124C", "#450A17"];
+const verticalLinesTime = [0, 6, 12, 18];
 
 function createPollutionsSection(sitename){
     fetch('https://data.moenv.gov.tw/api//v2//aqx_p_488?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1100&format=JSON')
     .then(response => {
         return response.json();
     }).then(data => {
-        records = data.records;
+        const records = data.records;
         renderPollutionsSection(records, sitename); 
     })
 }
 
 function renderPollutionsSection(data, sitename){
     siteRecords = retriveSiteData(data, sitename);
+    emptyPollutionSection();
     renderAqiSection(siteRecords);
     for(let i=0;i<pollutantsList.length;i++){
-        pollutantRecords = retriveEachIndex(siteRecords, pollutantsList[i]);
+        let pollutantRecords = retriveEachIndex(siteRecords, pollutantsList[i]);
         renderPollutionText(pollutantsList[i], pollutantRecords[0].value);
         renderPollutionBarChart(pollutantsList[i], pollutantRecords);
     }
@@ -108,6 +110,15 @@ function renderPollutionText(pollutant, value){
     valueDiv.textContent = value;
 }
 
+function emptyPollutionSection(){
+    const aqiRatingEmojiDiv = document.querySelector('.main_info_title_detail_rating_image');
+    aqiRatingEmojiDiv.innerHTML = '';
+    const barChartDivs = document.querySelectorAll('.bar_chart');
+    barChartDivs.forEach(div => {
+        div.innerHTML = '';
+    })
+}
+
 function renderPollutionBarChart(pollutant, data){
     const container = document.getElementById(pollutant+'_bar_chart');
     const width = container.clientWidth;
@@ -129,15 +140,26 @@ function renderPollutionBarChart(pollutant, data){
     const colorScale = d3.scaleLinear()
         .domain(pollutantsDomainList[pollutant])
         .range(colorGradientList);
-    // 繪製格子(垂直灰短線)
+    // 繪製重點時間(垂直灰長線)
     for(let i=0;i<data.length;i++){
-        svg.append("line")
-        .attr("x1", width/12*i)
-        .attr("y1", height-10)
-        .attr("x2", width/12*i)
-        .attr("y2", height) 
-        .attr("stroke", "gray")
-        .attr("stroke-width", 1); 
+        const time = data[i].time;
+        const hour = parseInt(time.substring(11, 13), 10);
+        if(verticalLinesTime.includes(hour)){
+            svg.append("line")
+                .attr("x1", width/12*(Math.abs(i-data.length+1)+0.5))
+                .attr("y1", marginTop-5)
+                .attr("x2", width/12*(Math.abs(i-data.length+1)+0.5))
+                .attr("y2", height)
+                .attr("stroke", "gray") 
+                .attr("stroke-width", 1);
+            svg.append("text")
+                .attr("x", width/12*(Math.abs(i-data.length+1)+0.5))
+                .attr("y", marginTop-10)
+                .attr("text-anchor", "middle") 
+                .attr("fill", "black") 
+                .style("font-size", "14px") 
+                .text(hour);
+        }
     }
     // 創建長條圖
     svg.selectAll("rect")
@@ -145,19 +167,23 @@ function renderPollutionBarChart(pollutant, data){
         .enter()
         .append("rect")
         .attr("x", (d, i) => width - x(i) - x.bandwidth())
-        .attr("y", d => y(d.value))
         .attr("width", x.bandwidth())
+        .attr("y", height)
+        .attr("height", 0)
+        .transition()
+        .duration(1000)
+        .attr("y", d => y(d.value))
         .attr("height", d => height - y(d.value))
         .attr("fill", d => colorScale(d.value));
     // 繪製間隔(垂直白長線)
     for(let i=0;i<data.length;i++){
         svg.append("line")
-        .attr("x1", width/12*i)
-        .attr("y1", marginTop)
-        .attr("x2", width/12*i)
-        .attr("y2", height) 
-        .attr("stroke", "white")
-        .attr("stroke-width", 1); 
+            .attr("x1", width/12*i)
+            .attr("y1", marginTop)
+            .attr("x2", width/12*i)
+            .attr("y2", height) 
+            .attr("stroke", "white")
+            .attr("stroke-width", 1); 
     }
     // 繪製水平灰線
     svg.append("line")
