@@ -9,17 +9,26 @@ const pollutantsDomainList = {
 }
 const colorGradientList = ["#47986A", "#ABC060", "#F4B850", "#CF543F", "#83186E", "#5F0E85", "#6B124C", "#450A17"];
 const verticalLinesTime = [0, 6, 12, 18];
+let records;
 
-function createPollutionsSection(sitename){
-    loadingAnimation(true);
-    fetch('https://data.moenv.gov.tw/api/v2/aqx_p_488?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=datacreationdate%20desc&format=JSON')
-    .then(response => {
-        return response.json();
-    }).then(data => {
-        const records = data.records;
-        renderPollutionsSection(records, sitename);
-        loadingAnimation(false);
-    })
+
+function waitForData(){
+    if (window.globalVar){
+        //
+    } else {
+        setTimeout(waitForData, 100);
+    }
+    return window.globalVar
+  }
+
+async function createPollutionsSection(sitename){
+    const pollutantLoadingContainer = document.querySelector('.pollutant_info_loading_container');
+    pollutantLoadingContainer.style.display = 'flex';
+    records = await waitForData();
+    renderPollutionsSection(records, sitename);
+    pollutantLoadingContainer.style.display = 'none';
+    
+
 }
 
 function loadingAnimation(boolean){
@@ -208,3 +217,5 @@ function renderPollutionBarChart(pollutant, data){
     // Append the SVG element.
     container.append(svg.node());
 }
+
+

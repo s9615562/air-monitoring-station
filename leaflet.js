@@ -16,6 +16,7 @@ function onMapClick(e) {
         .openOn(map);
     querySite.textContent = e.loc
     map.setView([e.latlng.lat,e.latlng.lng], 10);
+    createPollutionsSection(e.loc);
 }
 
 // self define mark module
@@ -62,13 +63,14 @@ let siteData;
 async function fetchData(){
     let response = await fetch("https://data.moenv.gov.tw/api/v2/aqx_p_488?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=datacreationdate%20desc&format=JSON")
     let data = await response.json()
-    let element=data.records;
+    const records = data.records;
+    window.globalVar = records
     for(let i = 0; i<85;i++){
-        let lat = element[i].latitude
-        let lng = element[i].longitude
-        let site = element[i].sitename
-        let status = element[i].status
-        let time = element[i].datacreationdate
+        let lat = records[i].latitude
+        let lng = records[i].longitude
+        let site = records[i].sitename
+        let status = records[i].status
+        let time = records[i].datacreationdate
         siteData = {
             "site":site,
             "lat":lat,
