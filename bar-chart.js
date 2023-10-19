@@ -142,6 +142,26 @@ function emptyPollutionSection(){
 
 function renderPollutionBarChart(pollutant, data){
     const container = document.getElementById(pollutant+'_bar_chart');
+    // 視窗大小改變事件監聽器
+    window.addEventListener("resize", () => {
+        const width = container.clientWidth;
+        svg.attr("width", width);
+        x.range([0, width]);
+        svg.selectAll("rect")
+            .attr("x", (d, i) => width - x(i) - x.bandwidth())
+            .attr("width", x.bandwidth());
+        svg.selectAll("line.timeLine")
+            .attr("x1", (d, i) => (width / data.length) * (Math.abs(data.indexOf(d)-data.length+1)+0.5))
+            .attr("x2", (d, i) => (width / data.length) * (Math.abs(data.indexOf(d)-data.length+1)+0.5));
+        svg.selectAll("line.seperationLine")
+            .attr("x1", (d, i) => width/data.length*i)
+            .attr("x2", (d, i) => width/data.length*i);
+        svg.selectAll("line.xLine")
+            .attr("x2", width);
+        svg.selectAll("text")
+            .attr("x", (d, i) => (width / data.length) * (Math.abs(data.indexOf(d)-data.length+1)+0.5));
+    });
+    // 開始繪製
     const width = container.clientWidth;
     const height = container.clientHeight;
     const marginTop = 30;
@@ -162,26 +182,28 @@ function renderPollutionBarChart(pollutant, data){
         .domain(pollutantsDomainList[pollutant])
         .range(colorGradientList);
     // 繪製重點時間(垂直灰長線)
-    for(let i=0;i<data.length;i++){
-        const time = data[i].time;
-        const hour = parseInt(time.substring(11, 13), 10);
-        if(verticalLinesTime.includes(hour)){
-            svg.append("line")
-                .attr("x1", width/data.length*(Math.abs(i-data.length+1)+0.5))
-                .attr("y1", marginTop-5)
-                .attr("x2", width/data.length*(Math.abs(i-data.length+1)+0.5))
-                .attr("y2", height)
-                .attr("stroke", "gray") 
-                .attr("stroke-width", 1);
-            svg.append("text")
-                .attr("x", width/data.length*(Math.abs(i-data.length+1)+0.5))
-                .attr("y", marginTop-10)
-                .attr("text-anchor", "middle") 
-                .attr("fill", "black") 
-                .style("font-size", "14px") 
-                .text(hour);
-        }
-    }
+    svg.selectAll("line.timeLine")
+        .data(data.filter((d, i) => verticalLinesTime.includes(parseInt(d.time.substring(11, 13), 10))))
+        .enter()
+        .append("line")
+        .attr("class", "timeLine")
+        .attr("x1", (d, i) => (width / data.length) * (Math.abs(data.indexOf(d)-data.length+1)+0.5))
+        .attr("y1", marginTop - 5)
+        .attr("x2", (d, i) => (width / data.length) * (Math.abs(data.indexOf(d)-data.length+1)+0.5))
+        .attr("y2", height)
+        .attr("stroke", "gray")
+        .attr("stroke-width", 1);
+    svg.selectAll("text.timeText")
+        .data(data.filter((d, i) => verticalLinesTime.includes(parseInt(d.time.substring(11, 13), 10))))
+        .enter()
+        .append("text")
+        .attr("class", "timeText")
+        .attr("x", (d, i) => (width / data.length) * (Math.abs(data.indexOf(d)-data.length+1)+0.5))
+        .attr("y", marginTop - 10)
+        .attr("text-anchor", "middle")
+        .attr("fill", "black")
+        .style("font-size", "14px")
+        .text(d => parseInt(d.time.substring(11, 13), 10));
     // 創建長條圖
     svg.selectAll("rect")
         .data(data)
@@ -197,17 +219,20 @@ function renderPollutionBarChart(pollutant, data){
         .attr("height", d => (!isNaN(d.value) ? height - y(d.value) : 0))
         .attr("fill", d => colorScale(d.value));
     // 繪製間隔(垂直白長線)
-    for(let i=0;i<data.length;i++){
-        svg.append("line")
-            .attr("x1", width/data.length*i)
-            .attr("y1", marginTop)
-            .attr("x2", width/data.length*i)
-            .attr("y2", height) 
-            .attr("stroke", "white")
-            .attr("stroke-width", 1); 
-    }
+    svg.selectAll("line.seperationLine")
+        .data(data)
+        .enter()
+        .append("line")
+        .attr("class", "seperationLine")
+        .attr("x1", (d, i) => width/data.length*i)
+        .attr("y1", marginTop)
+        .attr("x2", (d, i) => width/data.length*i)
+        .attr("y2", height) 
+        .attr("stroke", "white")
+        .attr("stroke-width", 1); 
     // 繪製水平灰線
     svg.append("line")
+        .attr("class", "xLine")
         .attr("x1", 0)
         .attr("y1", height)
         .attr("x2", width)
