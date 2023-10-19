@@ -7,14 +7,21 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// click and pop the lng/lat
+// Create a single popup instance
+var popup = L.popup();
+
 function onMapClick(e) {
-    var popup = L.popup()
+    // Close the existing popup if it's open
+    if (popup.isOpen()) {
+        map.closePopup(popup);
+    }
+
     popup
         .setLatLng(e.latlng)
         .setContent(e.loc)
         .openOn(map);
     querySite.textContent = e.loc
+    console.log(e)
     map.setView([e.latlng.lat,e.latlng.lng], 10);
     createPollutionsSection(e.loc);
 }
@@ -51,8 +58,11 @@ function setMarker(lat,lng,status,loc){
     }
 
     let marker = L.marker([lat, lng], { icon: status }).addTo(map).bindPopup(loc);
+    marker.setZIndexOffset(1000); // Adjust the z-index as needed
     marker.on('click', function () {
+        console.log("hi")
         onMapClick({ latlng: marker.getLatLng(),loc:loc,status:status });
+        map.closePopup();
     });
 }
     
@@ -84,17 +94,26 @@ async function fetchData(){
 
 
 // input site and get lat and lng
-let siteLat,siteLng,siteMarker;
+let siteLat,siteLng,siteMarker=null;
 let sites = await fetchData();
 
 function getSite(site){
+    if (siteMarker) {
+        siteMarker.closePopup();
+        siteMarker.removeFrom(map);
+        siteMarker = null; // Reset the variable
+    }
+
     sites.forEach(element => {
         if(site == element.site){
             siteLat =element.lat
             siteLng =element.lng
             map.setView([siteLat,siteLng], 10);
             siteMarker = L.marker([siteLat, siteLng], { icon: L.divIcon({ className: 'hidden-icon' }) }).addTo(map).bindPopup(site);
+            siteMarker.setZIndexOffset(1000); // Adjust the z-index as needed
+
             siteMarker.openPopup();
+
         }else if(site == "查無區域"){
             siteMarker.closePopup();
             map.setView(defultSpot, 8);
