@@ -325,6 +325,10 @@
     height: 100%;
 }
 
+rect:hover{
+    filter: brightness(1.1);
+}
+
 footer{
     width: 100%;
     height: 50px;
