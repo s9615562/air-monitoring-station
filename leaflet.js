@@ -18,6 +18,7 @@ function onMapClick(e) {
     querySite.textContent = e.loc
     map.setView([e.latlng.lat,e.latlng.lng], 10);
     createPollutionsSection(e.loc);
+    changeCountySection(e.loc);
 }
 
 // self define mark module
@@ -126,6 +127,7 @@ let handleChange = function(mutations) {
         let targetSite = changedContent.replace(/\s/g, '')
         getSite(targetSite)
         createPollutionsSection(targetSite);
+        changeCountySection(targetSite);
     });
 };
 
