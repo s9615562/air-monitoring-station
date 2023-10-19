@@ -1,116 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="index.css" rel="stylesheet">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="index.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+            <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+		<title>Document</title>
+	</head>
 
-    <title>Document</title>
-</head>
+	<body>
+		<div class="head">
+			<div class="head_box">
+				<div class="navbar-title">空氣監測站</div>
+				<div class="search_bar">
+					<input id="searchBox" class="search_box" />
+					<img class="search_image" src="./image/search.png" />
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<!-- 左邊 -->
+			<div class="main_location">
+				<!-- 框框內上層地區 -->
+				<div class="main_location_county">
+					<!-- title -->
+					<div class="main_location_county_title">
+						<!-- 城市選單 -->
+						<span class="main_location_county_query"
+							>監測縣市：</span
+						>
+						<select
+							id="citySelect"
+							class="main_location_county_result"
+						>
+							<option value="default">請選擇城市</option>
+						</select>
+					</div>
+					<!-- box -->
+					<nav id="listBar" class="list_bar">
+						<button id="leftBtn" class="direction_btn">&lt;</button>
+						<div id="areaDisplay"></div>
+						<button id="rightBtn" class="direction_btn">
+							&gt;
+						</button>
+					</nav>
+				</div>
+				<!-- 框框內下層地圖 -->
+                <div id="map" class="map"></div>
 
-<body>
-    <div class="head">
-        <div class="head_box">
-            <div class="navbar-title">
-                空氣監測站
-            </div>
-            <div class="search_bar">
-                <button id="search_button"></button>
-                <input type="text" class="input">
-            </div>
-        </div>
-    </div>
-    <div class="main">
-        <!-- 左邊 -->
-        <div class="main_location">
-            <!-- 框框內上層地區 -->
-            <div class="main_location_county">
-                <!-- title -->
-                <div class="main_location_county_title">
-                    <div class="main_location_county_query">
-                        監測縣市:
-                    </div>
-                    <div class="main_location_county_result">
-                        台南
-                    </div>
-                </div>
-                <!-- box -->
-                <div class="main_location_district">
-                    <div class="main_location_district_content">
-                        永康
-                    </div>
-                    <div class="main_location_district_content">
-                        善化
-                    </div>
-                    <div class="main_location_district_content">
-                        麻豆
-                    </div>
-                </div>
-            </div>
-            <!-- 框框內下層地圖 -->
-            <div class="main_map">        
-            </div>
-        </div>
-        <!-- 右邊 -->
-        <div class="main_info">
-            <div class="main_info_title">
-                <div class="main_info_title_district">
-                    監測地區:
-                </div>
-                <div class="main_info_title_result">
-                    永康
-                </div>
-            </div>
-            <div class="main_info_score">
-                <div class="main_info_score_number">
-                    86
-                </div>
-                <div class="main_info_title_detail">
-                    <div class="main_info_title_detail_rating">
-                        <div class="main_info_title_detail_rating_text">普通</div>
-                        <div class="main_info_title_detail_rating_image">圖</div>
-                    </div>
-                    <div class="main_info_title_detail_time">2023</div>              
-                </div>
-                
-            </div>
-            <div class="pollutant_information">
-                <div class="pollutant_field">
-                    <div id="pm2.5" class="pollutant"></div>
-                    <div id="pm2.5_pollutant_value" class="pollutant_value"></div>
-                    <div id="pm2.5_bar_chart" class="bar_chart"></div>
-                </div>
-                <div class="pollutant_field">
-                    <div id="pm10" class="pollutant"></div>
-                    <div id="pm10_pollutant_value" class="pollutant_value"></div>
-                    <div id="pm10_bar_chart" class="bar_chart"></div>
-                </div>
-                <div class="pollutant_field">
-                    <div id="O3" class="pollutant"></div>
-                    <div id="O3_pollutant_value" class="pollutant_value"></div>
-                    <div id="O3_bar_chart" class="bar_chart"></div>
-                </div>
-                <div class="pollutant_field">
-                    <div id="NO2" class="pollutant"></div>
-                    <div id="NO2_pollutant_value" class="pollutant_value"></div>
-                    <div id="NO2_bar_chart" class="bar_chart"></div>
-                </div>
-                <div class="pollutant_field">
-                    <div id="SO2" class="pollutant"></div>
-                    <div id="SO2_pollutant_value" class="pollutant_value"></div>
-                    <div id="SO2_bar_chart" class="bar_chart"></div>
-                </div>
-                <div class="pollutant_field">
-                    <div id="CO" class="pollutant"></div>
-                    <div id="CO_pollutant_value" class="pollutant_value"></div>
-                    <div id="CO_bar_chart" class="bar_chart"></div>
-                </div>
-            </div>
-            
-        </div>
-    </div>    
-</body>
+                <!-- <div id="map" style="height: 645px;width: 630px;"></div> -->
+			</div>
+			<!-- 右邊 -->
+			<div class="main_info">
+				<div class="main_info_title">
+					<div class="main_info_title_district">監測地區:</div>
+					<div id="searchArea" class="main_info_title_result"></div>
+				</div>
+				<div class="pollutant_info_loading_container">
+					<div class="pollutant_info_loading"></div>
+				</div>
+				<div class="main_info_score">
+					<div class="main_info_score_number"></div>
+					<div class="main_info_title_detail">
+						<div class="main_info_title_detail_rating">
+							<div class="main_info_title_detail_rating_text">		
+							</div>
+							<div class="main_info_title_detail_rating_image">
+								<!-- <img src="" alt=""> -->
+							</div>
+						</div>
+						<div class="main_info_title_detail_time"></div>
+					</div>
+				</div>
+				<div class="pollutant_information">
+					<div class="pollutant_field">
+						<div id="pm2.5" class="pollutant"></div>
+						<div
+							id="pm2.5_pollutant_value"
+							class="pollutant_value"
+						></div>
+						<div id="pm2.5_bar_chart" class="bar_chart"></div>
+					</div>
+					<div class="pollutant_field">
+						<div id="pm10" class="pollutant"></div>
+						<div
+							id="pm10_pollutant_value"
+							class="pollutant_value"
+						></div>
+						<div id="pm10_bar_chart" class="bar_chart"></div>
+					</div>
+					<div class="pollutant_field">
+						<div id="o3" class="pollutant"></div>
+						<div
+							id="o3_pollutant_value"
+							class="pollutant_value"
+						></div>
+						<div id="o3_bar_chart" class="bar_chart"></div>
+					</div>
+					<div class="pollutant_field">
+						<div id="no2" class="pollutant"></div>
+						<div
+							id="no2_pollutant_value"
+							class="pollutant_value"
+						></div>
+						<div id="no2_bar_chart" class="bar_chart"></div>
+					</div>
+					<div class="pollutant_field">
+						<div id="so2" class="pollutant"></div>
+						<div
+							id="so2_pollutant_value"
+							class="pollutant_value"
+						></div>
+						<div id="so2_bar_chart" class="bar_chart"></div>
+					</div>
+					<div class="pollutant_field">
+						<div id="co_8hr" class="pollutant"></div>
+						<div
+							id="co_8hr_pollutant_value"
+							class="pollutant_value"
+						></div>
+						<div id="co_8hr_bar_chart" class="bar_chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="./selectData.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+		<script src="bar-chart.js"></script>
+
+		<script type="module" src="./leaflet.js"></script>
+
+
+	</body>
+
 </html>
-<style>
-
-</style>

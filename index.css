@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+
 .head{
     display: flex;
     justify-content: center;
@@ -12,9 +13,12 @@
 }
 
 .head_box{
-    width:1300px;
+    width: 1300px;
+    height: 95px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
 }
 
 .navbar-title {
@@ -30,26 +34,33 @@
     line-height: 95px;
   }
 
+/* 搜尋框
+-------------------- */
 .search_bar{
     width: 330px;
-    height: 70px;
     display: flex;
-
+    position: relative;
+    margin-right: 10px;
 }
 
-.input{
+.search_box {
     width: 330px;
     height: 70px;
-    margin-top: 12.5px;
+    border: none;
+    background-color: #d9d9d9;
+    font-size: 50px;
 }
 
-#search_button{
-    background-size: cover;
-    cursor: pointer;
-    /*background-image: url('magnifying-glass.png') ;*/
-    margin-top: 12.5px;
+.search_image {
+    height: 50px;
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
 }
 
+/* MAIN
+-------------------- */
 .main{
     display:flex;
     width:1300px;
@@ -57,14 +68,17 @@
     margin-top: 50px;
 }
 
+
 .main_location{
     width:630px;
     /* background-color: rgb(148, 223, 28); */
     margin-right: 50px;
 }
 
+/* 縣市選單
+-------------------- */
 .main_location_county{
-    height: 200px; 
+    height: 160px; 
     border-radius: 5px;
     border: 1px solid #000;
     background: rgba(255, 255, 255, 0.00);
@@ -74,16 +88,15 @@
 
 }
 .main_location_county_title{
-    /* background-color: rgb(149, 91, 98); */
-    margin-bottom: px;
     display: flex;
     height: 100px;
+    align-items: center;
 }
 .main_location_county_query{
     width: 155px;
     height: 44px;
     margin-left: 37px;
-    margin-top: 26px;
+    /*margin-top: 26px;*/
     margin-right: 40px;
     color: #000;
     font-family: Inter;
@@ -91,12 +104,16 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    display: flex;
+    white-space: nowrap;
+    /*align-items: center;*/
 }
+
 .main_location_county_result{
     display: flex;
-    width: 344px;
-    height: 64px;
-    margin-top: 20px;
+    width: 350px;
+    height: 70px;
+    /* margin-top: 20px; */
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -109,25 +126,67 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    border: 0;
 }
 
 
-.main_location_district{
-    /*display: grid;
-    margin: auto;
-
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr ;
-    gap: 12px;
-    /* margin-top: 20px; */
-    /*margin-right: 60px;
-    margin-left: 60px;*/
+/* 區域列表
+-------------------- */
+.list_bar {
     display: flex;
-    justify-content: center;
-
-
+    flex-direction: row;
+    height: 50px;
 }
 
+
+#areaDisplay {
+    width: 528px;
+    /* height: 30px; */
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin: 0 10px;
+    overflow: hidden;
+    
+}
+
+.area_button {
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background 0.5s;
+    border-radius: 10px;
+    font-size: 26px;
+    padding: 0 5px;
+}
+
+.area_button:hover {
+    background:#d9d9d9;
+    border-radius: 10px;
+}
+
+.direction_btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background 0.5s;
+    border-radius: 10px;
+    height: 50px;
+    width: 50px;
+    font-size: 26px;
+}
+
+.direction_btn:hover {
+    background:#d9d9d9;
+    border-radius: 10px;
+}
+
+
+/* AREA 
+---------------- */
 .main_location_district_content{
     width: 160px;
     height: 70px;
@@ -141,14 +200,15 @@
     line-height: 70px;
     border-radius: 5px;
     background: #D9D9D9;
-    gap: 12px;
+    margin: 6px;
     
+} 
+
+.map{
+    height: 645px;
+    width: 630px;
 }
 
-.main_map{
-    height: 540px;
-    background-color: aquamarine;
-}
 
 
 .main_info{
@@ -156,6 +216,7 @@
     width:620px;
     border: 1px black solid;
     border-radius: 5px;
+    position: relative;
 }
 
 .main_info_title{
@@ -166,11 +227,40 @@
     height: 75px;
     font-size: 44px;
     margin-top: 22px;
+    margin-bottom: 35px;
+}
+
+.pollutant_info_loading_container{
+    width: 100%;
+    height: 700px;
+    border: black;
+    position: absolute;
+    bottom: 0;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.pollutant_info_loading{
+    box-sizing: border-box;
+    width: 180px;
+    height: 180px;
+    border: 40px solid #E0E8E2;
+    border-top: 40px solid white;
+    border-radius: 100%;
+    animation: loader 1s infinite linear;
+}
+@keyframes loader {
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .main_info_score{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 31px;
 }
 
 
@@ -178,8 +268,6 @@
     width: 200px;
     height: 120px;
     flex-shrink: 0;
-    background: #FFF96F;
-   /* margin-left: 56px;*/
     color: #000;
     font-family: Inter;
     font-size: 96px;
@@ -198,8 +286,16 @@
     font-weight: 500;
     line-height: normal;
     display: flex;
+    margin-top: 22px;
+    margin-left: 20px;
 }
 
+
+.main_info_title_detail_rating_image img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
 
 .main_info_title_detail_time{
     color: #000;
@@ -208,22 +304,44 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-top: 12px;
+    margin-left: 20px;
 }
 
 .pollutant_information{
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    margin: 25px 30px 25px 30px;
+}
+
+.pollutant_field{
     width: 555px;
-    
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
 }
 
-
-#pollutant{
-    font-size: 32px;
+.pollutant{
+    width: calc(30 / 111 * 100%);
+    /* height: 100%; */
+    font-size: 36px;
 }
 
-
-#pollutant_value{
-    font-size: 32px;
+.pollutant_value{
+    width: calc(30 / 111 * 100%);
+    /* height: 100%; */
+    font-size: 26px;
+    text-align: center;
 }
+
+.bar_chart{
+    width: calc(51 / 111 * 100%);
+    height: 100%;
+}
+
 
 @media (max-width:1300px){
    
@@ -236,7 +354,7 @@
     }
     
     .head_box{
-        width:850px;
+        /*width:850px;*/
         display: flex;
         justify-content: space-between;
     }
@@ -256,11 +374,18 @@
     
     .search_bar{
         width: 330px;
-        height: 70px;
         display: flex;
-    
     }
     
+    .search_box {
+        width: 330px;
+        height: 70px;
+        border: none;
+        background-color: #d9d9d9;
+        font-size: 50px;
+
+    }
+
     .input{
         width: 330px;
         height: 70px;
@@ -276,25 +401,25 @@
     
     .main{
         display:flex;
-        width:850px;
+        width:100%;/*850px;*/
         margin: auto;
-        margin-top: 50px;
+        margin-top: 30px;
     }
     
     .main_location{
-        width:425px;
+        width:50%;/*425px;*/
+        /*height: 200px;*/
         /* background-color: rgb(148, 223, 28); */
-        margin-right: 50px;
+        /*margin-right: 0px;*/
+        margin: 0;
     }
     
     .main_location_county{
-        height: 200px; 
         border-radius: 5px;
         border: 1px solid #000;
         background: rgba(255, 255, 255, 0.00);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        margin-bottom: 15px;
-    
+        margin-bottom: 0px;
     
     }
     .main_location_county_title{
@@ -307,7 +432,6 @@
         width: 155px;
         height: 44px;
         margin-left: 37px;
-        margin-top: 26px;
         margin-right: 40px;
         color: #000;
         font-family: Inter;
@@ -318,9 +442,9 @@
     }
     .main_location_county_result{
         display: flex;
-        width: 160px;
+        width: auto;
         height: 70px;
-        margin-top: 20px;
+        margin-right: 20px;
         justify-content: center;
         align-items: center;
         gap: 10px;
@@ -365,18 +489,19 @@
         gap: 12px;
     }
     
-    .main_map{
-        height: 540px;
-        background-color: aquamarine;
+    .map{
+        width: auto;/*425px;*/
+        margin: 10px 0;
     }
     
     
     .main_info{
-        height: 483px;
-        width:425px;
+        height: auto;
+        width:49.7%;/*423px;*/ 
         border: 1px black solid;
         border-radius: 5px;
-        margin-left: 30px;
+        margin: 0;
+        
     }
     
     .main_info_title{
@@ -389,12 +514,14 @@
         height: 75px;
         font-size: 44px;
         margin-top: 22px;
+        margin-left: 30px;
+        margin-bottom: 30px;
     }
     
     .main_info_score{
         display: flex;
-        flex-direction: column;
-        
+        flex-direction: row;
+        margin-left: 30px;
     }
     
     
@@ -411,6 +538,7 @@
         font-weight: 500;
         line-height: 120px;
         text-align: center;
+        margin-bottom: 15px;
     }
     
     
@@ -422,6 +550,9 @@
         font-weight: 500;
         line-height: normal;
         display: flex;
+        margin-top: 0px;
+        margin-bottom: 15px;
+        margin-left: 0px;
     }
     
     
@@ -432,12 +563,9 @@
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        margin-left: 0px;
     }
     
-    .pollutant_information{
-        width: 555px;
-        
-    }
     
     
     #pollutant{
@@ -449,5 +577,259 @@
         font-size: 32px;
     }
 
+    .pollutant_field {
+        width: auto;
+    }
 
 }
+
+@media (max-width:850px){
+   
+    .head{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 95px;
+        background: #E0E8E2;
+    }
+    
+    .head_box{
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .navbar-title {
+        /*width: 100%;*/
+        height: 95px;
+        flex-shrink: 0;
+        background: #E0E8E2;
+        color: #000;
+        font-family: Inter;
+        font-size: 44px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 95px;
+      }
+    
+    .search_bar{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .search_box {
+        width: 50%;
+        height: 70px;
+        border: none;
+        background-color: #d9d9d9;
+        font-size: 50px;
+        /*justify-content: flex-end;*/
+        /*margin-left: auto;*/
+
+    }
+
+    .search_image {
+        height: 50px;
+        margin-left: 50%;
+    }
+
+
+    .input{
+        width: 330px;
+        height: 70px;
+        margin-top: 12.5px;
+    }
+    
+    #search_button{
+        background-size: cover;
+        cursor: pointer;
+        /*background-image: url('magnifying-glass.png') ;*/
+        margin-top: 12.5px;
+    }
+    
+    .main{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 95%;
+        margin-top: 20px;
+    }
+    
+    .main_location{
+        width:100%;
+        /*height: 109px;*/
+        /* background-color: rgb(148, 223, 28); */
+        margin-right: 0px;
+    }
+    
+    .main_location_county{
+        /* height: 200px;  */
+        border-radius: 5px;
+        border: 1px solid #000;
+        background: rgba(255, 255, 255, 0.00);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        margin-bottom: 0px;
+    
+    
+    }
+    .main_location_county_title{
+        /* background-color: rgb(149, 91, 98); */
+        margin-bottom: px;
+        display: flex;
+        width:  100%;
+    }
+    .main_location_county_query{
+        width: 155px;
+        margin-left: 20px;
+        margin-right: 20px;
+        color: #000;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+    .main_location_county_result{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 5px;
+        background: #E0E8E2;
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+    
+    
+    .main_location_district{
+        display: flex;
+        margin: auto;
+    
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr ;
+        gap: 12px;
+        /* margin-top: 20px; */
+        margin-right: 60px;
+        margin-left: 60px;
+    
+    }
+    
+    .main_location_district_content{
+        width: 160px;
+        height: 70px;
+        flex-shrink: 0;
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 70px;
+        border-radius: 5px;
+        background: #D9D9D9;
+        gap: 12px;
+    }
+    
+    .main_map{
+        width: 100%;
+        height: 395px;
+        background-color: aquamarine;
+    }
+    
+    
+    .main_info{
+        width:99.5%;
+        border: 1px black solid;
+        border-radius: 5px;
+        
+    }
+    
+    .main_info_title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        width: 445;
+        height: 75px;
+        font-size: 44px;
+        margin-top: 22px;
+        margin-left: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .main_info_score{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 30px;
+    }
+    
+    
+    .main_info_score_number{
+        width: 200px;
+        height: 120px;
+        flex-shrink: 0;
+        background: #FFF96F;
+        /*margin-left: 56px;*/
+        color: #000;
+        font-family: Inter;
+        font-size: 96px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    
+    .main_info_title_detail_rating{
+        color: #000;
+        font-family: Inter;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        display: flex;
+        margin-top: 0px;
+        margin-bottom: 15px;
+        margin-left: 0px;
+    }
+    
+    
+    .main_info_title_detail_time{
+        color: #000;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin-left: 0px;
+    }
+    
+    
+    #pollutant{
+        font-size: 32px;
+    }
+    
+    
+    #pollutant_value{
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .pollutant_value{
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+}
+
