@@ -113,6 +113,7 @@ let handleChange = function(mutations) {
         let changedContent = mutation.target.textContent;
         let targetSite = changedContent.replace(/\s/g, '')
         getSite(targetSite)
+        createPollutionsSection(targetSite);
     });
 };
 

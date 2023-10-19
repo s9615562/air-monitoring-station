@@ -120,7 +120,6 @@ const searchArea = document.getElementById('searchArea');
 document.addEventListener('click', (event) => {
 	if (event.target.classList.contains('area_button')) {
 		searchArea.textContent = event.target.textContent;
-		createPollutionsSection(event.target.textContent);
 	}
 });
 
