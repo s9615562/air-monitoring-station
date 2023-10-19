@@ -442,7 +442,7 @@
     }
     .main_location_county_result{
         display: flex;
-        width: auto;
+        width: 30%;
         height: 70px;
         margin-right: 20px;
         justify-content: center;
@@ -702,6 +702,8 @@
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        width: 30%;
+        font-size: 6vw;
     }
     
     
@@ -747,6 +749,11 @@
         border-radius: 5px;
         
     }
+    .pollutant{
+        /* width: calc(30 / 111 * 100%); */
+        /* height: 100%; */
+        font-size: 7vw;
+    }
     
     .main_info_title{
         display: flex;
@@ -771,14 +778,14 @@
     
     
     .main_info_score_number{
-        width: 200px;
+        width: 30%;
         height: 120px;
         flex-shrink: 0;
         background: #FFF96F;
         /*margin-left: 56px;*/
         color: #000;
         font-family: Inter;
-        font-size: 96px;
+        font-size: 10vw;
         font-style: normal;
         font-weight: 500;
         line-height: 120px;
@@ -817,15 +824,9 @@
     }
     
     
-    #pollutant_value{
-        font-size: 32px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
     
     .pollutant_value{
-        font-size: 32px;
+        font-size: 5vw;
         display: flex;
         justify-content: center;
         align-items: center;
