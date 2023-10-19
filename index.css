@@ -241,7 +241,6 @@
     width: 200px;
     height: 120px;
     flex-shrink: 0;
-    background: #FFF96F;
    /* margin-left: 56px;*/
     color: #000;
     font-family: Inter;
@@ -266,6 +265,12 @@
 }
 
 
+.main_info_title_detail_rating_image img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
 .main_info_title_detail_time{
     color: #000;
     font-family: Inter;
@@ -278,17 +283,37 @@
 }
 
 .pollutant_information{
+    width: 100%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 50px 0 0 0;
+}
+
+.pollutant_field{
     width: 555px;
-    
+    height: 80px;
+    display: flex;
 }
 
-
-#pollutant{
-    font-size: 32px;
+.pollutant{
+    width: calc(30 / 111 * 100%);
+    height: 100%;
 }
 
+.pollutant_value{
+    width: calc(30 / 111 * 100%);
+    height: 100%;
+}
 
-#pollutant_value{
+.bar_chart{
+    width: calc(51 / 111 * 100%);
+    height: 100%;
+}
+
+.pollutant{
     font-size: 32px;
 }
 
@@ -790,4 +815,14 @@
     }
 
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pollutant_value{
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
