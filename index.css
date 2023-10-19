@@ -690,6 +690,7 @@
         line-height: normal;
     }
     .main_location_county_result{
+        width: 130px;
         display: flex;
         justify-content: center;
         align-items: center;
