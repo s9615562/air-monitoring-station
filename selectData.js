@@ -76,7 +76,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 citySelect.addEventListener('change', () => {
 	const selectedCity = citySelect.value;
-	const areas = cityData[selectedCity];
+	showArea(selectedCity);
+});
+
+function showArea(city){
+	const areas = cityData[city];
 
 	// 清空區域顯示區域
 	areaDisplay.innerHTML = '';
@@ -88,7 +92,7 @@ citySelect.addEventListener('change', () => {
 		areaDiv.classList.add('area_button');
 		areaDisplay.appendChild(areaDiv);
 	});
-});
+}
 
 // list_bar左右捲動
 function areaScrollList(direction) {
