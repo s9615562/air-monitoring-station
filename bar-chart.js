@@ -248,4 +248,19 @@ function renderPollutionBarChart(pollutant, data){
     container.append(svg.node());
 }
 
+function findCounty(cityName){
+    for (const county in cityData) {
+      if (cityData[county].includes(cityName)) {
+        return county;
+      }
+    }
+    return '無此縣市';
+}
 
+function changeCountySection(sitename){
+    const county = findCounty(sitename);
+    if(county != '無此縣市'){
+        citySelect.value = county;
+        showArea(county);
+    }
+}
