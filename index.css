@@ -308,9 +308,29 @@
 }
 
 .pollutant{
-    width: calc(8 / 50 * 100%);
+    width: calc(10 / 50 * 100%);
     /* height: 100%; */
     font-size: 28px;
+    display: flex;
+    align-items: center;
+}
+
+abbr{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+abbr img{
+    width: 100%;
+    height: 100%;
+}
+abbr[title] {
+    text-decoration: none;
 }
 
 .pollutant_value{
@@ -321,8 +341,12 @@
 }
 
 .bar_chart{
-    width: calc(32 / 50 * 100%);
+    width: calc(30 / 50 * 100%);
     height: 100%;
+}
+
+rect:hover{
+    filter: brightness(1.1);
 }
 
 footer{
@@ -567,12 +591,22 @@ footer{
     .pollutant{
         font-size: 20px;
         line-height: 40px;
+        width: calc(11 / 50 * 100%);
     }
-    
+
+    abbr{
+        width: 15px;
+        height: 15px;
+    }
     
     .pollutant_value{
         font-size: 20px;
         line-height: 40px;
+        width: calc(9 / 50 * 100%);
+    }
+
+    .bar_chart{
+        width: calc(30 / 50 * 100%);
     }
 
     .pollutant_field {
@@ -821,6 +855,13 @@ footer{
     
     .pollutant{
         font-size: 18px;
+        width: calc(13 / 50 * 100%);
+    }
+
+    abbr{
+        width: 13px;
+        height: 13px;
+        margin-left: 3px;
     }
     
     .pollutant_value{
@@ -828,6 +869,11 @@ footer{
         /* display: flex;
         justify-content: center;
         align-items: center; */
+        width: calc(8 / 50 * 100%);
+    }
+
+    .bar_chart{
+        width: calc(29 / 50 * 100%);
     }
     
 }
