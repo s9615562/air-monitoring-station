@@ -71,9 +71,11 @@ function renderAqiSection(data){
     const rating = handleRatingString(data[0].status);
     aqiRatingDiv.textContent = rating;
     const aqiRatingEmojiDiv = document.querySelector('.main_info_title_detail_rating_image');
-    const emojiImg = document.createElement('img');
-    emojiImg.src = mappingEmoji(data[0].status);
-    aqiRatingEmojiDiv.appendChild(emojiImg);
+    if(data[0].aqi != -1){
+        const emojiImg = document.createElement('img');
+        emojiImg.src = mappingEmoji(data[0].status);
+        aqiRatingEmojiDiv.appendChild(emojiImg);
+    }
     const timeDiv = document.querySelector('.main_info_title_detail_time');
     timeDiv.textContent = data[0].datacreationdate;
 }
@@ -117,8 +119,26 @@ function mappingScoreColor(rating){
 function renderPollutionText(pollutant, value){
     const nameDiv = document.getElementById(pollutant);
     nameDiv.textContent = pollutant.toUpperCase().split('_')[0];
+    addPollutantInformation(pollutant, nameDiv);
     const valueDiv = document.getElementById(pollutant+'_pollutant_value');
     valueDiv.textContent = value;
+}
+
+function addPollutantInformation(pollutant, div){
+    const pollutantInformationLists = {
+        'pm2.5': '單位：μg/m3\n長期吸入可能會引起過敏、氣喘、肺氣腫、肺癌、心血管疾病、肝癌、血液疾病等。',
+        'pm10': '單位：μg/m3\n容易造成過敏性鼻炎，引發咳嗽、氣喘等危害。',
+        'o3': '單位：ppm\n長期暴露之下將會導致過敏性結膜炎及過敏性鼻炎等疾病。',
+        'no2': '單位：ppb\n刺激眼睛、鼻、咽喉及呼吸道的黏膜，令支氣管過敏及加劇哮喘病人對致敏原的反應。',
+        'so2': '單位：ppb\n易刺激呼吸系統，產生鼻咽炎、咳嗽、呼吸短促、氣管炎和肺炎。',
+        'co_8hr': '8小時平均值，單位：ppm\n可能引起頭痛、反胃欲嘔等症狀。'
+    }
+    const abbr = document.createElement('abbr');
+    abbr.title = pollutantInformationLists[pollutant];
+    const informationImg = document.createElement('img');
+    informationImg.src = './image/information.png';
+    abbr.appendChild(informationImg);
+    div.appendChild(abbr);
 }
 
 function emptyPollutionSection(){
